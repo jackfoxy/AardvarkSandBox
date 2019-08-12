@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>   
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>BackgroundColor</RootNamespace>
+    <AssemblyName>BackgroundColor</AssemblyName>
+    <Name>BackgroundColor</Name>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="paket.references" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

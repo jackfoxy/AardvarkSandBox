@@ -1,0 +1,29 @@
+type file
+id AardvarkSandBox
+title
+    AardvarkSandBox
+owners
+    Jack Fox
+authors 
+    Jack Fox
+projectUrl
+    https://github.com/jackfoxy/AardvarkSandBox
+iconUrl
+    https://raw.githubusercontent.com/jackfoxy/AardvarkSandBox/master/docs/files/img/logo.png
+licenseUrl
+    https://github.com/jackfoxy/AardvarkSandBox/blob/master/LICENSE.txt
+requireLicenseAcceptance
+    false
+language
+    F#
+copyright
+    Copyright 2017
+tags
+    F# 3d graphics visualization
+summary
+    Aardvark SandBox
+description
+    Aardvark SandBox
+
+files
+	../../bin/AardvarkSandBox ==> lib
