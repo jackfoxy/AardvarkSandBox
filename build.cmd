@@ -6,4 +6,4 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-dotnet run --project Build.fsproj %*
+dotnet run --project --configuration Release --project .\.build\Build.fsproj %*

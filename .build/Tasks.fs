@@ -56,7 +56,7 @@ let gitName = "AardvarkSandBox"
 
 let website = sprintf "/%s" "AardvarkSandBox"
 
-let testFolder = sprintf "tests/%s.Tests" project
+let testFolder = sprintf "../tests/%s.Tests" project
 
 // --------------------------------------------------------------------------------------
 // END TODO: The rest of the file includes standard build steps
@@ -74,10 +74,7 @@ let (|Fsproj|Csproj|Vbproj|Shproj|) (projFileName:string) =
     | f when f.EndsWith("shproj") -> Shproj
     | _                           -> failwith (sprintf "Project file %s not supported. Unknown project type." projFileName)
     
-let serverPath = Path.getFullName "./src/Server"
-let clientPath = Path.getFullName "./src/Client"
-let clientDeployPath = Path.combine clientPath "deploy"
-let deployDir = Path.getFullName "./deploy"
+let serverPath = Path.getFullName "../src/Server"
 
 let projectsToBuild =
     [|
@@ -156,20 +153,21 @@ let globToArray x =
     |> Seq.map id
     |> Seq.toArray
 
-let binToClean =
-    !! "bin/**"
-    -- "bin/Debug/**"
+let binToClean() =
+    !! "**/bin"
+    -- ".build/bin"
+    -- "node_modules/webpack-cli/bin"
     |> Seq.map id
     |> Seq.toArray
 
 let createAndGetDefault () =
     let clean = BuildTask.create "Clean" [] {
         [|
-            globToArray "src/**/bin"
-            globToArray "src/**/obj"
-            globToArray "tests/**/bin"
-            globToArray "tests/**/obj"
-            binToClean
+            globToArray "**/src/**/bin"
+            globToArray "**/src/**/obj"
+            globToArray "**/tests/**/bin"
+            globToArray "**/tests/**/obj"
+            binToClean()
             [| 
                 "temp"
             |]
@@ -179,7 +177,7 @@ let createAndGetDefault () =
         }
 
     let cleanDocs = BuildTask.create "CleanDocs" [] {
-        Shell.cleanDirs ["docs/reference"; "docs"]
+        Shell.cleanDirs ["../docs/reference"; "docs"]
         }
         
     let installClient = BuildTask.create "InstallClient" [] {
@@ -244,8 +242,8 @@ let createAndGetDefault () =
     // src folder to support multiple project outputs
     //Target.create "CopyBinaries" (fun _ ->
     let copyBinaries = BuildTask.create "CopyBinaries" [build] {
-        !! "src/**/*.??proj"
-        -- "src/**/*.shproj"
+        !! "**/src/**/*.??proj"
+        -- "**/src/**/*.shproj"
         |> Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin" </> configuration, "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
         |> Seq.filter (fun (fromDir, toDir) -> fromDir.ToLower().Contains("client") |> not)
         |> Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
@@ -337,12 +335,12 @@ let createAndGetDefault () =
     // Generate the documentation
 
     // Paths with template/source/output locations
-    let bin        = __SOURCE_DIRECTORY__ @@ ".\\bin"
-    let content    = __SOURCE_DIRECTORY__ @@ ".\\docsrc\\content"
-    let output     = __SOURCE_DIRECTORY__ @@ ".\\docs"
-    let files      = __SOURCE_DIRECTORY__ @@ ".\\docsrc\\files"
-    let templates  = __SOURCE_DIRECTORY__ @@ ".\\docsrc\\tools\\templates"
-    let formatting = __SOURCE_DIRECTORY__ @@ ".\\packages\\formatting\\FSharp.Formatting"
+    let bin        = __SOURCE_DIRECTORY__ @@ "..\\bin"
+    let content    = __SOURCE_DIRECTORY__ @@ "..\\docsrc\\content"
+    let output     = __SOURCE_DIRECTORY__ @@ "..\\docs"
+    let files      = __SOURCE_DIRECTORY__ @@ "..\\docsrc\\files"
+    let templates  = __SOURCE_DIRECTORY__ @@ "..\\docsrc\\tools\\templates"
+    let formatting = __SOURCE_DIRECTORY__ @@ "..\\packages\\formatting\\FSharp.Formatting"
     let docTemplate = "docpage.cshtml"
 
     let github_release_user = Environment.environVarOrDefault "github_release_user" gitOwner
@@ -512,7 +510,6 @@ let createAndGetDefault () =
         Git.Branches.pushTag "" "origin" releaseNotes.NugetVersion
     }
 
-    //BuildTask.createEmpty "All" [runTests; runBenchmarks; generateDocs; nuGet]
     BuildTask.createEmpty "All" [runTests; runBenchmarks; generateDocs; nuGet]
 
 let listAvailable() = BuildTask.listAvailable()
