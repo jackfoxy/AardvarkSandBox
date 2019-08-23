@@ -4,9 +4,22 @@ source https://api.nuget.org/v3/index.json
 nuget FSharp.Core
 nuget Argu
 
+nuget Aardvark.Base
+nuget Aardvark.Base.Incremental
+nuget Aardvark.Base.FSharp
+
+nuget Aardvark.Base.Rendering
+nuget Aardvark.Application.Slim
 nuget Aardvark.Application.Slim.GL
+nuget Aardvark.Application.Slim.Vulkan
 nuget Aardvark.SceneGraph
 nuget Aardvark.SceneGraph.IO
+
+nuget Aardvark.Service
+nuget Aardvark.UI
+nuget Aardvark.UI.Primitives
+nuget Aardvark.Compiler.DomainTypes.MSBuild
+nuget Aardium
 
 nuget Expecto
 nuget Expecto.BenchmarkDotNet

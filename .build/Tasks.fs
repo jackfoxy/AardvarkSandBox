@@ -86,6 +86,7 @@ let projectsToBuild =
         Path.getFullName "./src/HelloWorld"
         Path.getFullName "./src/ModelLoader"
         Path.getFullName "./src/SierpinskiTetrahedron"
+        Path.getFullName "./src/AardvarkTemplateMedia"
         Path.getFullName <| sprintf "./src/%s" project
         Path.getFullName <| sprintf "./src/%sConsole" project
         Path.getFullName <| sprintf "./tests/%s.Tests" project
@@ -244,9 +245,11 @@ let createAndGetDefault () =
     let copyBinaries = BuildTask.create "CopyBinaries" [build] {
         !! "**/src/**/*.??proj"
         -- "**/src/**/*.shproj"
-        |> Seq.map (fun f -> ((System.IO.Path.GetDirectoryName f) </> "bin" </> configuration, "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
+        |> Seq.map (fun f -> 
+            ((System.IO.Path.GetDirectoryName f) </> "bin" </> configuration, "bin" </> (System.IO.Path.GetFileNameWithoutExtension f)))
         |> Seq.filter (fun (fromDir, toDir) -> fromDir.ToLower().Contains("client") |> not)
-        |> Seq.iter (fun (fromDir, toDir) -> Shell.copyDir toDir fromDir (fun _ -> true))
+        |> Seq.iter (fun (fromDir, toDir) -> 
+            Shell.copyDir toDir fromDir (fun _ -> true))
     }
 
     let run = BuildTask.create "Run" [build] {
