@@ -2,16 +2,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>AardvarkTemplateMedia</RootNamespace>
-    <AssemblyName>AardvarkTemplateMedia</AssemblyName>
-    <Name>AardvarkTemplateMedia</Name>
+    <RootNamespace>AardvarkTemplate</RootNamespace>
+    <AssemblyName>AardvarkTemplate</AssemblyName>
+    <Name>AardvarkTemplate</Name>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-	<None Include="paket.references" />
-	<Compile Include="Model.fs" />
-	<Compile Include="Model.g.fs" />
-	<Compile Include="App.fs" />
+    <None Include="paket.references" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup />

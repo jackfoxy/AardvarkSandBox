@@ -76,6 +76,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Utils", "src\Utils\Utils.fs
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "AardvarkTemplateMedia", "src\AardvarkTemplateMedia\AardvarkTemplateMedia.fsproj", "{988A5D7E-5ADF-4D82-8FB8-58FA3502D9D7}"
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "AardvarkTemplate", "src\AardvarkTemplate\AardvarkTemplate.fsproj", "{12A8597B-A741-4938-99FB-BC612D247E08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +144,10 @@ Global
 		{988A5D7E-5ADF-4D82-8FB8-58FA3502D9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{988A5D7E-5ADF-4D82-8FB8-58FA3502D9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{988A5D7E-5ADF-4D82-8FB8-58FA3502D9D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A8597B-A741-4938-99FB-BC612D247E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A8597B-A741-4938-99FB-BC612D247E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A8597B-A741-4938-99FB-BC612D247E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A8597B-A741-4938-99FB-BC612D247E08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +170,7 @@ Global
 		{41A74AB6-6650-4273-9D08-1F2816EF86FF} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
 		{888EF0C0-497E-4184-AECD-E7F26F3A5086} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
 		{988A5D7E-5ADF-4D82-8FB8-58FA3502D9D7} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
+		{12A8597B-A741-4938-99FB-BC612D247E08} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D17D2BC3-B950-45DB-8BB4-DDF102B1A23C}

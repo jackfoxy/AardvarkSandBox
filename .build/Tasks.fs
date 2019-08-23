@@ -86,6 +86,7 @@ let projectsToBuild =
         Path.getFullName "./src/HelloWorld"
         Path.getFullName "./src/ModelLoader"
         Path.getFullName "./src/SierpinskiTetrahedron"
+        Path.getFullName "./src/AardvarkTemplate"
         Path.getFullName "./src/AardvarkTemplateMedia"
         Path.getFullName <| sprintf "./src/%s" project
         Path.getFullName <| sprintf "./src/%sConsole" project
