@@ -12,6 +12,7 @@ nuget Aardvark.Base.Rendering
 nuget Aardvark.Application.Slim
 nuget Aardvark.Application.Slim.GL
 nuget Aardvark.Application.Slim.Vulkan
+nuget Aardvark.Application.Utilities
 nuget Aardvark.SceneGraph
 nuget Aardvark.SceneGraph.IO
 

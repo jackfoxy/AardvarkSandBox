@@ -8,12 +8,11 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-	<None Include="paket.references" />
-	<Compile Include="Model.fs" />
-	<Compile Include="Model.g.fs" />
-	<Compile Include="App.fs" />
+    <None Include="paket.references" />
+    <Compile Include="Model.fs" />
+    <Compile Include="Model.g.fs" />
+    <Compile Include="App.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

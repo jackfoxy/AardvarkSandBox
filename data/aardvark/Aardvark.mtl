@@ -11,5 +11,5 @@ Kd 0.5 0.5 0.5
 Ks 0.002964 0.002964 0.002964
 illum 2
 Ns 2
-map_Kd aardva_d.tif
-map_bump aardva_n.tif
+map_Kd aardva-c.tif
+map_Kn aardva-n.tif
