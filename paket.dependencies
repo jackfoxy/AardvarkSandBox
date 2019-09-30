@@ -1,6 +1,7 @@
 framework: auto-detect
 source https://api.nuget.org/v3/index.json
 
+nuget Aardvark.Application.WinForms
 nuget FSharp.Core
 nuget Argu
 

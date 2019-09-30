@@ -90,6 +90,7 @@ let projectsToBuild =
         Path.getFullName "./src/AardvarkTemplateMedia"
         Path.getFullName "./src/PlainAardvarkRendering"
         Path.getFullName "./src/WalkThroughSceneGraph"
+        Path.getFullName "./src/DslFirstImplementation"
         Path.getFullName <| sprintf "./src/%s" project
         Path.getFullName <| sprintf "./src/%sConsole" project
         Path.getFullName <| sprintf "./tests/%s.Tests" project

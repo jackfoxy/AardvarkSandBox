@@ -82,6 +82,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "PlainAardvarkRendering", "s
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "WalkThroughSceneGraph", "src\WalkThroughSceneGraph\WalkThroughSceneGraph.fsproj", "{173A3DAD-6085-4C63-93CA-DECFDD1F9500}"
 EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "DslFirstImplementation", "src\DslFirstImplementation\DslFirstImplementation.fsproj", "{63782462-8CC1-4524-BC76-B91402BDCE0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -160,6 +162,10 @@ Global
 		{173A3DAD-6085-4C63-93CA-DECFDD1F9500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{173A3DAD-6085-4C63-93CA-DECFDD1F9500}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{173A3DAD-6085-4C63-93CA-DECFDD1F9500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63782462-8CC1-4524-BC76-B91402BDCE0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63782462-8CC1-4524-BC76-B91402BDCE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63782462-8CC1-4524-BC76-B91402BDCE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63782462-8CC1-4524-BC76-B91402BDCE0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,6 +191,7 @@ Global
 		{12A8597B-A741-4938-99FB-BC612D247E08} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
 		{D360FD48-47F4-40A4-9B33-D1AB548FBFB5} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
 		{173A3DAD-6085-4C63-93CA-DECFDD1F9500} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
+		{63782462-8CC1-4524-BC76-B91402BDCE0C} = {62C403BE-56E0-4958-A8AA-A04AFF0EA8EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D17D2BC3-B950-45DB-8BB4-DDF102B1A23C}
