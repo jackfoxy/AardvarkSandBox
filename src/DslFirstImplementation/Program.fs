@@ -14,6 +14,8 @@ open DslFirstImplementation.ConvertToSceneGraph
 [<EntryPoint>]
 let main argv = 
 
+    Aardvark.Init()
+
     use app = new OpenGlApplication()
     //let win = app.CreateSimpleRenderWindow()
     let win = app.CreateGameWindow(8)
@@ -30,6 +32,7 @@ let main argv =
         app.Runtime.CompileRender(win.FramebufferSignature,
             sg 
              |> Sg.effect [DefaultSurfaces.trafo |> toEffect; DefaultSurfaces.simpleLighting |> toEffect]
+             |> Sg.camera camera // DefaultSurfaces.simpleLighting needs camera location. by applying the camera here aardvark scenegraph is able to derive it automatically
         )
 
     win.Run()
