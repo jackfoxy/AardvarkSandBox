@@ -1,8 +1,9 @@
-﻿open Aardvark.Base.Rendering
+﻿open FSharp.Data.Adaptive
+open Aardvark.Base.Rendering
 //open Aardvark.Application.WinForms
 
 open Aardvark.Base
-open Aardvark.Base.Incremental
+//open Aardvark.Base.Incremental
 open Aardvark.Application
 open Aardvark.Application.Slim
 
@@ -20,10 +21,10 @@ let main argv =
     //let win = app.CreateSimpleRenderWindow()
     let win = app.CreateGameWindow(8)
 
-    let frustum = win.Sizes |> Mod.map (fun s -> Frustum.perspective 60.0 0.1 10.0 (float s.X / float s.Y))
+    let frustum = win.Sizes |> AVal.map (fun s -> Frustum.perspective 60.0 0.1 10.0 (float s.X / float s.Y))
     let cameraView = CameraView.lookAt (V3d.III*3.0) V3d.OOO V3d.OOI
     let camera = 
-        frustum |> Mod.map (fun f -> Camera.create cameraView f) 
+        frustum |> AVal.map (fun f -> Camera.create cameraView f) 
 
     let sg = createApp win camera drawingApp
 

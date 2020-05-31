@@ -2,16 +2,16 @@
 
 open Aardvark.Base
 open Aardvark.Application
-open Aardvark.Base.Incremental
+open FSharp.Data.Adaptive
 open Aardvark.SceneGraph
 
 module App =
     // note: this function contains side effects. we just left the functional programming world!
-    let createApp (ctrl : IRenderControl) (camera : IMod<Camera>) (app : App<'model,'msg, Scene<'msg>>) = 
+    let createApp (ctrl : IRenderControl) (camera : aval<Camera>) (app : App<'model,'msg, Scene<'msg>>) = 
 
         let mutable model = app.initial
-        let view = Mod.init (app.view model)
-        let sceneGraph = view |> Mod.map ConvertToSceneGraph.toSg |> Sg.dynamic
+        let view = AVal.init (app.view model)
+        let sceneGraph = view |> AVal.map ConvertToSceneGraph.toSg |> Sg.dynamic
 
         let updateScene (m : 'model)  =
             let newView = app.view m
@@ -20,7 +20,7 @@ module App =
             )
 
         let handleMouseEvent (createEvent : V3d -> MouseEvent) =
-            let ray = ctrl.Mouse.Position |> Mod.force  |> Camera.pickRay (camera |> Mod.force) 
+            let ray = ctrl.Mouse.Position |> AVal.force  |> Camera.pickRay (camera |> AVal.force) 
             match Picking.pick ray view.Value with
                 | [] -> ()
                 | (d,f)::_ -> 

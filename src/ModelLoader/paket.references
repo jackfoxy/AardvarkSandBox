@@ -2,3 +2,4 @@ FSharp.Core
 Aardvark.Application.Slim.GL
 Aardvark.SceneGraph
 Aardvark.SceneGraph.IO
+FSharp.Data.Adaptive

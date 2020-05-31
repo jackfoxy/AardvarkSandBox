@@ -1,16 +1,16 @@
 namespace AardvarkTemplateMedia.Model
 
-open System
-open Aardvark.Base
-open Aardvark.Base.Incremental
+//open System
+//open Aardvark.Base
 open Aardvark.UI.Primitives
+open Adaptify
 
 type Primitive =
     | Box
     | Sphere
 
 
-[<DomainType>]
+[<ModelType>]
 type Model =
     {
         currentModel    : Primitive

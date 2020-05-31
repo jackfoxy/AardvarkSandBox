@@ -9,3 +9,4 @@ Aardvark.Application.Slim.Vulkan
 Aardvark.SceneGraph
 Aardvark.SceneGraph.IO
 Aardvark.Application.Utilities
+FSharp.Data.Adaptive

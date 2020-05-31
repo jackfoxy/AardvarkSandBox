@@ -46,8 +46,8 @@ module ConvertToSceneGraph =
     let toSg (scene : Scene<'msg>) : ISg = 
         let rec toSg (s : State) (scene : Scene<'msg>) =
             match scene with
-                | Transform(t,children) -> children |> Seq.map ( toSg { s with trafo = s.trafo * t } ) |> Sg.group'
-                | Scene.Colored(c,children) -> children |> Seq.map ( toSg { s with color = c } ) |> Sg.group'
+                | Transform(t,children) -> children |> Seq.map ( toSg { s with trafo = s.trafo * t } ) |> Sg.ofSeq
+                | Scene.Colored(c,children) -> children |> Seq.map ( toSg { s with color = c } ) |> Sg.ofSeq
                 | Render (_, Cone(center,dir,height,radius)) -> 
                     IndexedGeometryPrimitives.solidCone center dir height radius 10 s.color 
                     |> Sg.ofIndexedGeometry |> Sg.transform s.trafo
@@ -65,6 +65,6 @@ module ConvertToSceneGraph =
                                 DefaultSemantic.Colors,  Array.replicate 4 s.color  :> System.Array; 
                                 DefaultSemantic.Normals, Array.replicate 4 (p.Edge03.Cross(p.P2-p.P0)).Normalized :> System.Array
                             ], SymDict.empty)  |> Sg.ofIndexedGeometry |> Sg.transform s.trafo
-                | Group xs -> xs |> Seq.map ( toSg s) |> Sg.group'
+                | Group xs -> xs |> Seq.map ( toSg s) |> Sg.ofSeq
 
         toSg { trafo = Trafo3d.Identity; color = C4b.White } scene

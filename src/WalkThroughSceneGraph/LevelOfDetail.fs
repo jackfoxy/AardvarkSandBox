@@ -1,10 +1,10 @@
 ﻿namespace Aardvark.SceneGraph
 
 open Aardvark.Base
-open Aardvark.Base.Incremental
 open Aardvark.Base.Ag
 open Aardvark.SceneGraph
 open Aardvark.SceneGraph.Semantics
+open FSharp.Data.Adaptive
 
 type LodScope = { cameraPosition : V3d; bb : Box3d }
 type LodNode(viewDecider : (LodScope -> bool), low : ISg, high : ISg) =

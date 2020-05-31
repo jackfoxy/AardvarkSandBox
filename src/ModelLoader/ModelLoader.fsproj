@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>ModelLoader</RootNamespace>
     <AssemblyName>ModelLoader</AssemblyName>
     <Name>ModelLoader</Name>
@@ -10,11 +10,6 @@
   <ItemGroup>
     <None Include="paket.references" />
     <Compile Include="Program.fs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Aardvark.Application.Slim.GL" Version="4.10.3" />
-    <PackageReference Include="Aardvark.SceneGraph" Version="4.10.3" />
-    <PackageReference Include="Aardvark.SceneGraph.IO" Version="4.10.3" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

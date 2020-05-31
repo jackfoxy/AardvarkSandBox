@@ -1,9 +1,11 @@
 ﻿namespace Concept
 
 // dependency graph, mod stuff
-open Aardvark.Base.Incremental
+//open Aardvark.Base.Incremental
 // attribute grammar implementation
+open FSharp.Data.Adaptive
 open Aardvark.Base.Ag
+open FSharp.Data.Adaptive
 
 // placeholder for geometry description (e.g. vertices, normales etc)
 type Geometry = string
@@ -13,14 +15,14 @@ type Trafo3d = string
 [<AutoOpen>]
 module Operators = 
     // Trafos can be multiplied (string concatenation in our case)
-    let (*) (a : IMod<Trafo3d>) (b : IMod<Trafo3d>) =
-        Mod.map2 (fun a b -> sprintf "%s%s" a b) a b
+    let (*) (a : aval<Trafo3d>) (b : aval<Trafo3d>) =
+        AVal.map2 (fun a b -> sprintf "%s%s" a b) a b
 
     
 // object to be rendered
 [<StructuredFormatDisplay("{AsString}")>] // this object contains an IMod. 
 // for nice prints in this demo we evaluate its content in custom print method.
-type RenderObject = { geometry : Geometry; trafo : IMod<Trafo3d>} with
+type RenderObject = { geometry : Geometry; trafo : aval<Trafo3d>} with
     member x.AsString = sprintf "{ geometry = %A; trafo = %A }" x.geometry (x.trafo.GetValue())
 
 // provide functions for transformations in this module
@@ -35,11 +37,11 @@ type RenderNode(geometry : string) =
     interface ISg
     member x.Geometry = geometry
 
-type IApplicator(child : IMod<ISg>) =
+type IApplicator(child : aval<ISg>) =
     interface ISg
     member x.Child = child
 
-type Trafo(child : IMod<ISg>, trafo : IMod<Trafo3d>) =
+type Trafo(child : aval<ISg>, trafo : aval<Trafo3d>) =
     inherit IApplicator(child)
 
     member x.Child = child
@@ -61,7 +63,7 @@ type RenderObjectSemantics() =
     
     member x.RenderObjects(node : RenderNode) = 
         aset {
-            let t : IMod<Trafo3d> = node?Trafo
+            let t : aval<Trafo3d> = node?Trafo
             yield { geometry = node.Geometry; trafo = t }
         }
 
@@ -82,17 +84,17 @@ type TrafoSemantics() =
     member x.Trafo(t : Trafo) =
         t.Child?Trafo <- t.Trafo * t?Trafo
     member x.Trafo(r : Root<ISg>) = 
-        r.Child?Trafo <- Mod.constant Trafo3d.identity
+        r.Child?Trafo <- AVal.constant Trafo3d.identity
 
 
 module Sg = 
     let geometry (s : string) = RenderNode(s) :> ISg
     let ofASet (s : aset<ISg>) = Group(s) :> ISg
     let ofSeq (xs : seq<ISg>) = Group(ASet.ofSeq xs) :> ISg
-    let transformed (t : IMod<Trafo3d>) (child : IMod<ISg>) = 
+    let transformed (t : aval<Trafo3d>) (child : aval<ISg>) = 
         Trafo(child, t)
-    let transformed' (t : IMod<Trafo3d>) (child : ISg) =
-        Trafo(Mod.constant child, t)
+    let transformed' (t : aval<Trafo3d>) (child : ISg) =
+        Trafo(AVal.constant child, t)
     let empty = Group(ASet.empty) :> ISg
 
 module Test = 
@@ -103,15 +105,15 @@ module Test =
         // remember trafo values in order to modify later
         // in real world scenarios interaction code such as camera controllers
         // would modify modifiables accordingly.
-        let trafo1 = Mod.init "5"
-        let trafo2 = Mod.init "1"
+        let trafo1 = AVal.init "5"
+        let trafo2 = AVal.init "1"
         
         // another, for now empty list of scene graphs
         let additionalNodes = CSet.ofList []
         let addtionalSg = Sg.ofASet additionalNodes
 
         let sg1 = 
-            Sg.transformed' (Mod.init "v") (
+            Sg.transformed' (AVal.init "v") (
                 Sg.ofSeq [
                     Sg.transformed' trafo1 (Sg.geometry "A")
                     Sg.transformed' trafo2 (Sg.geometry "B")

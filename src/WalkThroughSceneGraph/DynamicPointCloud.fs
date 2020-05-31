@@ -2,10 +2,9 @@
 
 open Aardvark.Base
 open Aardvark.Base.Rendering
-open Aardvark.Base.Incremental
 open Aardvark.SceneGraph
 open Aardvark.Application
-
+open FSharp.Data.Adaptive
 
 let run () = 
 
@@ -28,7 +27,7 @@ let run () =
         )
         ArrayBuffer(points) :> IBuffer
 
-    let currentBuffer = generateVertices () |> Mod.init
+    let currentBuffer = generateVertices () |> AVal.init
     let verticesBufferView = BufferView(currentBuffer, typeof<V3f>)
 
     win.Keyboard.DownWithRepeats.Values.Add(fun k -> 

@@ -10,11 +10,9 @@ open Aardvark.Base
 open System
 
 
-
-
 [<EntryPoint>]
 let main args =
-    Ag.initialize()
+  //  Ag.initialize()
     Aardvark.Init()
     Aardium.init()
 
