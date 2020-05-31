@@ -1,6 +1,5 @@
 namespace AardvarkTemplateMedia
 
-open System
 open Aardvark.Base
 open Aardvark.UI
 open Aardvark.UI.Primitives
@@ -26,7 +25,7 @@ module App =
             | CameraMessage msg ->
                 { m with cameraState = FreeFlyController.update m.cameraState msg }
 
-    let view (m : MModel) =
+    let view (m : AdaptiveModel) =
 
         let frustum = 
             Frustum.perspective 60.0 0.1 100.0 1.0 
@@ -36,7 +35,7 @@ module App =
             m.currentModel |> AVal.map (fun v ->
                 match v with
                     | Box -> Sg.box (AVal.constant C4b.Red) (AVal.constant (Box3d(-V3d.III, V3d.III)))
-                    | Sphere -> Sg.sphere 5 (AVal.constant C4b.Green) (Mod.constant 1.0)
+                    | Sphere -> Sg.sphere 5 (AVal.constant C4b.Green) (AVal.constant 1.0)
             )
             |> Sg.dynamic
             |> Sg.shader {
@@ -58,11 +57,14 @@ module App =
 
         ]
 
+    let threads (model : Model) = 
+        FreeFlyController.threads model.cameraState |> ThreadPool.map CameraMessage
+
     let app =
         {
             initial = initial
             update = update
             view = view
-            threads = Model.Lens.cameraState.Get >> FreeFlyController.threads >> ThreadPool.map CameraMessage
+            threads = threads
             unpersist = Unpersist.instance
         }

@@ -1,18 +1,13 @@
 open AardvarkTemplateMedia
 
 open Aardium
-open Aardvark.Service
 open Aardvark.UI
 open Suave
-open Suave.WebPart
 open Aardvark.Rendering.Vulkan
 open Aardvark.Base
-open System
-
 
 [<EntryPoint>]
 let main args =
-  //  Ag.initialize()
     Aardvark.Init()
     Aardium.init()
 
