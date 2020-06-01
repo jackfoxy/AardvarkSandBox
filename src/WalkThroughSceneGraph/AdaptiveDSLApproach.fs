@@ -14,7 +14,6 @@ let run () =
 
     transact (fun _ -> 
         input1.Value <- 10
-        AVal.change input1 10 // same as method approach
     )
 
     let output2 =
@@ -58,17 +57,17 @@ let run () =
     printfn "summedResult2 was: %d" (AVal.force summedResult2) //2
 
     // same works for sets
-    let inputSet = CSet.ofList [1;2;3]
+    let inputSet = cset [1;2;3]
 
     let outputSet1 = inputSet |> ASet.map (fun a -> a + 1)
 
-    printfn "outputSet was: %A" (ASet.toList outputSet1) //[2;3;4]
+    printfn "outputSet was: %A" (ASet.force outputSet1) //[2;3;4]
 
     transact (fun _ -> 
         inputSet.Add 4 |> ignore
     )
 
-    printfn "outputSet was: %A" (ASet.toList outputSet1) //[2;3;4;5]
+    printfn "outputSet was: %A" (ASet.force outputSet1) //[2;3;4;5]
 
     // DSL approach
     let inputSet2 = inputSet :> aset<int>
@@ -80,11 +79,11 @@ let run () =
                 yield e + currentInput1
         }
 
-    printfn "outputSet2 was: %A" (ASet.toList outputSet2) // [2;3;4;5]
+    printfn "outputSet2 was: %A" (ASet.force outputSet2) // [2;3;4;5]
 
     transact (fun _ -> 
         input1.Value <- 999
         inputSet.Add(5) |> ignore
     )
 
-    printfn "outputSet2 was: %A" (ASet.toList outputSet2) // [1000; 1001; 1002; 1003; 1004]
+    printfn "outputSet2 was: %A" (ASet.force outputSet2) // [1000; 1001; 1002; 1003; 1004]
